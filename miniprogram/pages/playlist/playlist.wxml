@@ -1,0 +1,16 @@
+<!--pages/playlist/playlist.wxml-->
+<view>
+  <swiper indicator-dots="true" autoplay="true" interval="1500" duration="1000">
+    <block wx:if="{{swiperImgUrls.length>0}}" wx:for="{{swiperImgUrls}}" wx:key="*this">
+      <swiper-item>
+        <image class="swiper_item_image" wx:if="{{item.url}}" src="{{item.url}}" mode="widthFix"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="playlist-container">
+    <block wx:for="{{playlist}}">
+      <c-playlist playlist="{{item}}"></c-playlist>
+    </block>
+  </view>
+</view>
