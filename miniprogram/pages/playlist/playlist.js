@@ -1,4 +1,5 @@
 // pages/playlist/playlist.js
+const MAX_LIMIT = 15
 Page({
 
   /**
@@ -37,6 +38,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this._getPlaylist()
   },
 
   /**
@@ -71,14 +73,39 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      playlist: []
+    })
+    this._getPlaylist()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this._getPlaylist()
+  },
+  // 获取歌单列表
+  _getPlaylist(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    const _this = this
+    wx.cloud.callFunction({
+      name: 'music',
+      data: {
+        $url: 'playlist',
+        start: _this.data.playlist.length,
+        count: MAX_LIMIT
+      }
+    }).then((res) => {
+      const data = _this.data.playlist.concat(res.result.data)
+      this.setData({
+        playlist: data
+      })
+      wx.stopPullDownRefresh()
+      wx.hideLoading()
+    })
   },
 
   /**

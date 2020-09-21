@@ -1,6 +1,8 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-cloud.init()
+cloud.init({
+  env: 'dev-myouz'
+})
 const axios = require('axios')
 // icode有效期为30天 过期需要去http://coding.imooc.com/learn/list/373.html 页面获取
 const URL = 'https://apis.imooc.com/personalized?icode=BDFFA55E4011E6C3'
@@ -19,14 +21,14 @@ exports.main = async (event, context) => {
   const tasks = []
   for(let j = 0; j < batchTimes; j++) {
     // skip表示从第几条开始取
-    let promise = playlistCollection.skip(j * MAX_LIMIT)
+    let promise = playlistCollection.skip(j * MAX_LIMIT).limit(MAX_LIMIT).get()
     tasks.push(promise)
   }
   let list = {
     data: []
   }
   if (tasks.length > 0) {
-    list = await promise.all(tasks).reduce((acc,cur) => {
+    list = (await Promise.all(tasks)).reduce((acc,cur) => {
       return {
         data: acc.data.concat(cur.data)
       }
@@ -45,12 +47,12 @@ exports.main = async (event, context) => {
   for(let i = 0;i < playlist.length; i++){
     let flag = true
     for(let k = 0;k < list.data.length; k++){
-      if(playlist[i].id === list.data[i].id){
+      if(playlist[i].id === list.data[k].id){
         flag = false
         break
       }
     }
-    if (falg) {
+    if (flag) {
       newData.push(playlist[i])
     }
   }

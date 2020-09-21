@@ -1,0 +1,9 @@
+<view wx:if="{{listInfo.coverImgUrl}}" class='detail-container' style='background: url({{listInfo.coverImgUrl}}) no-repeat  top/cover'></view>
+  <view class='detail-mask'></view>
+  <view class='detail-info'>
+    <image src="{{listInfo.coverImgUrl}}" class='detail-img'></image>
+    <view class='detail'>
+      <view class='detail-nm'>{{listInfo.name}}</view>
+    </view>
+</view>
+<c-musiclist musiclist="{{musiclist}}"></c-musiclist>
