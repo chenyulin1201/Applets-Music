@@ -14,7 +14,14 @@ App({
         traceUser: true,
       })
     }
-
-    this.globalData = {}
+    this.globalData = {
+      playingMusicId: -1
+    }
+  },
+  setPlayMusicId(musicId) {
+    this.globalData.playingMusicId = musicId
+  },
+  getPlayMusicId() {
+    return this.globalData.playingMusicId
   }
 })

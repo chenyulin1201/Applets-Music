@@ -1,15 +1,22 @@
 <view class="player-container" style="background:url({{picUrl}}) center/cover no-repeat"></view>
 <view class="player-mask"></view>
 
-
 <view class="player-info">
-  <view class="player-disc {{isPlaying?'play': ''}}">
+  <!-- 封面信息 -->
+  <view class="player-disc {{isPlaying?'play': ''}}" bindtap="onchangeLyricShow" hidden="{{isLyricShow}}">
     <image  class="player-img rotation {{isPlaying?'':'rotation-paused'}}" src="{{picUrl}}"></image>
+  </view>
+  <!-- 歌词组件 -->
+  <c-lyric class="lyric" isLyricShow="{{!isLyricShow}}" lyric="{{lyric}}" bindtap="onchangeLyricShow"></c-lyric>
+  <!-- 进度条 -->
+  <view class="progress-bar">
+    <c-progress_bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate" bind:musicPlay="onPlay" bind:musicPause="onPause" isSame="{{isSame}}"></c-progress_bar>
+  </view>
+  <!-- 控制面板 -->
+  <view class="control">
+    <text class="iconfont icon-shangyishoushangyige" bindtap="onPrev"></text>
+    <text class="iconfont {{isPlaying?'icon-zanting':'icon-bofang'}}" bindtap="togglePlaying" ></text>
+    <text class="iconfont icon-xiayigexiayishou" bindtap="onNext"></text>
   </view>
 </view>
 
-<view class="control">
-  <text class="iconfont icon-shangyishoushangyige"></text>
-  <text class="iconfont {{isPlaying?'icon-zanting':'icon-bofang'}}" bindtap="togglePlaying" ></text>
-  <text class="iconfont icon-xiayigexiayishou"></text>
-</view>
