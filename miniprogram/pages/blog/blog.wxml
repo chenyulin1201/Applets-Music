@@ -1,2 +1,23 @@
 <!--pages/blog/blog.wxml-->
-<text>pages/blog/blog.wxml</text>
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="publish-container" bindtap="onPublish">
+      <i class="iconfont icon-fabu"></i>
+    </view>
+    <view class="search-container">
+      <c-search iconfont="iconfont" icon-sousuo="icon-sousuo" bind:search="onSearch"></c-search>
+    </view>
+  </view>
+  <!-- 博客卡片列表 -->
+  <view class="blog-list">
+    <block wx:for="{{blogList}}" wx:key="_id">
+    <view class="blog-panel">
+      <c-blog_card blog="{{item}}" data-blogid="{{item._id}}" bindtap="goComment"></c-blog_card>
+      <c-blog_ctrl iconfont="iconfont" icon-pinglun="icon-pinglun" icon-fenxiang="icon-fenxiang"></c-blog_ctrl>
+    </view>
+    </block>
+  </view>
+  <!-- 底部弹出层 -->
+  <c-login loginShow="{{loginShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail"></c-login>
+</view>

@@ -80,6 +80,20 @@
           "pathName": "pages/musiclist/musiclist",
           "query": "playlistId=5150207024",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/blog/blog",
+          "pathName": "pages/blog/blog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/blog-edit/blod-edit",
+          "pathName": "pages/blog-edit/blod-edit",
+          "query": "nickName=\"...\"&avatarUrl= \"https://thirdwx.qlogo.cn/mmopen/vi_32/mxZFWkOAV3TaLicmfuezNMuPwBgtzeKYo5hbwmfsextYwFPUYBbz6dLfe9TQvr1iboY7FTNjw0CK3DKgklrtNLTw/132\"",
+          "scene": null
         }
       ]
     }

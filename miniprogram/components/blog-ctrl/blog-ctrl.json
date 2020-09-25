@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "c-login": "../login/login",
+    "c-bottom_modal": "../bottom-modal/bottom-modal"
+  }
+}

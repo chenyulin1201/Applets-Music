@@ -1,0 +1,5 @@
+<c-bottom_modal modalShow="{{loginShow}}">
+  <view slot="modal-content">
+    <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="login">获取微信授权信息</button>
+  </view>
+</c-bottom_modal>
