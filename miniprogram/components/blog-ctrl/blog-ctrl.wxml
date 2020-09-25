@@ -11,7 +11,7 @@
 <c-login loginShow="{{loginShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail"></c-login>
 <c-bottom_modal modalShow="{{modalShow}}">
   <view slot="modal-content">
-    <textarea name="content" class="modal-content" placeholder="写评论" value="{{content}}" fixed="true" ></textarea>
-    <button class="send">发送</button>
+    <textarea name="content" bindinput="onInput" class="comment-content" placeholder="写评论" value="{{content}}" fixed="true" ></textarea>
+    <button class="send" bindtap="onSend">发送</button>
   </view>
 </c-bottom_modal>

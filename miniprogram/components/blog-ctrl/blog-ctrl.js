@@ -1,11 +1,12 @@
 // components/blog-ctrl/blog-ctrl.js
 let userInfo = {}
+const db = wx.cloud.database()
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    blogId: String
   },
 
   /**
@@ -43,7 +44,8 @@ Component({
         }
       })
     },
-    onLoginSuccess() {
+    onLoginSuccess(event) {
+      userInfo = event.detail
       this.setData({
         loginShow: false
       },() => {
@@ -56,6 +58,46 @@ Component({
       wx.showModal({
         title: '授权用户才能进行评价',
         content: ''
+      })
+    },
+    onSend() {
+      // 把评论信息插入数据库
+      let content = this.data.content
+      if (content.trim() == '') {
+        wx.showModal({
+          title: '评论内容不能为空',
+          content: ''
+        })
+        return
+      }
+      wx.showLoading({
+        title: '评价中',
+        mask: true,
+      })
+      db.collection('blog-comment').add({
+        data: {
+          content,
+          createTime: db.serverDate(),
+          blogId: this.properties.blogId,
+          nickName: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl
+        }
+      }).then((res) => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '评论成功',
+        })
+        this.setData({
+          modalShow: false,
+          content: ''
+        })
+      })
+
+      // 插入后推送模板消息
+    },
+    onInput(event){
+      this.setData({
+        content: event.detail.value
       })
     }
   }

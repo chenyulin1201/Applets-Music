@@ -45,3 +45,8 @@
 #### **注意事项**
 
 小程序端调用云数据库一次最多只能查20条数据， 在云函数端查询数据库的话一次最多能查询100条数据
+
+#### **云调用模板消息推送**
+
+可查看https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html
+

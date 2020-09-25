@@ -28,7 +28,7 @@
 
 .comment-content {
   width: 560rpx;
-  text-align: left!important;
+  text-align: left;
   padding: 20rpx;
   font-size: 32rpx;
 }
