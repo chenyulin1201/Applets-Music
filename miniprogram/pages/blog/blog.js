@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    adddev: 'dev',
     blogList: [],
     loginShow: false, // 控制底部弹出层是否显示
   },
